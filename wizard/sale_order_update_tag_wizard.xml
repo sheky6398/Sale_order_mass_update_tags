@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sale_order_update_tag_wizard_view_form">
+            <field name="name">sale.order.update.tag.wizard.view.form</field>
+            <field name="model">sale.order.update.tag.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>                                      
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                    </group>
+                    <footer>
+                        <button string="Update" type="object" name="action_update_tags" class="btn-primary" />
+                        <button string="Cancel" special="cancel" class="btn-light"/>
+                    </footer>      
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_sale_order_update_tag_wizard_wizard">
+            <field name="name">Update Tags</field>
+            <field name="res_model">sale.order.update.tag.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>  
+        <record id="model_sale_order_action_update_tags" model="ir.actions.server">
+            <field name="name">Update Tags</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_view_types">form,list</field>
+            <field name="state">code</field>
+            <field name="code">
+                if record:
+                    action_values = env.ref('sale_order_mass_update_tags.action_sale_order_update_tag_wizard_wizard').sudo().read()[0]
+                    action_values.update({'context': env.context})
+                    action = action_values
+            </field>
+        </record> 
+    </data>
+</odoo>
+

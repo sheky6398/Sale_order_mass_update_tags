@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_discount_wizard,sale.order.discount.wizard,model_sale_order_discount_wizard,,1,1,1,1
+access_sale_order_update_tag_wizard,sale.order.update.tag.wizard,model_sale_order_update_tag_wizard,,1,1,1,1
+access_sale_order_update_terms_wizard,sale.order.update.terms.wizard,model_sale_order_update_terms_wizard,,1,1,1,1
